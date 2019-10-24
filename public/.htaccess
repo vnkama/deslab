@@ -1,0 +1,36 @@
+Options All -ExecCGI -Indexes -Includes +FollowSymLinks
+AddDefaultCharset utf-8
+
+# если устанволен модуль mod_php.c (а он 100проц установлен)
+<ifModule mod_php.c>
+	php_flag register_globals off
+	php_value upload_max_filesize 10M
+	php_value post_max_size 11M
+	php_value default_charset utf-8
+</ifModule>
+#================================
+RewriteEngine On
+RewriteBase /
+
+
+# Убираем www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule (.*) https://%1/$1 [R=301,L]
+
+
+RewriteCond %{REQUEST_FILENAME} ^(.*)/$ [NC]
+RewriteRule (.*) start.php [L]
+
+RewriteCond %{REQUEST_FILENAME} ^(.*)/index$ [NC]
+RewriteRule (.*) / [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} ^(.*)/index\.(htm|html|php)$ [NC]
+RewriteRule (.*) / [R=301,L]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !(.*)/favicon.png$ [NC]
+RewriteCond %{REQUEST_FILENAME} !(.*)/robots.txt$ [NC]
+RewriteCond %{REQUEST_FILENAME} !(.*)/sitemap.xml$ [NC]
+RewriteRule (.*) start.php [L]
