@@ -50,7 +50,10 @@ if (!defined("START_PHP")) die('Directly run of router.php is rejected');
         }
     );
 
-    $routeType = null;
+
+    $routeType = null;  //должен быть доступен в catch
+
+
 
 
 try {
@@ -64,6 +67,7 @@ try {
 
 
         $httpRequestMethod = $_SERVER['REQUEST_METHOD'] ?? '';
+        $uri1 = $_SERVER['REQUEST_URI'] ?? '';
 
         //число параметров комндной строки
         $argc = router_getArgc();
@@ -93,7 +97,6 @@ try {
             $routeType = 'cli';
 
             $routeName = router_getRouteName_CLI();
-            //testRequestUriCli();
         }*/
         else {
             //неизвестный тип обработчика
