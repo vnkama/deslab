@@ -9,24 +9,36 @@ class Controller
 
     protected $data2View;   //массив данных для передачи во view
 
+    function __construct()
+    {
+        $this->data2View['accessLevel'] = getAccessLevel();   //массив данных для передачи во view
+    }
 
 
     protected $arrPostAnswer;   //ответ на post запрос браузера
 
 
-    function runHtml($htmlFile)
+    public function runHtml($htmlFile)
     {
         require_once ($htmlFile);
     }
 
 
-    function runModelView($viewFile,$classModel,$modelParams=null)
+    public function runModelView($viewFile,$classModel,$modelParams=[])
     {
-        $this->model = new $classModel($modelParams);
+        //$this->data2View['accessLevel']  = getAccessLevel();
+
+        $modelParams['accessLevel'] = $this->data2View['accessLevel'];
+
+        $classModelName = __NAMESPACE__.'\\'.$classModel;
+        $this->model = new $classModelName($modelParams);
 
         //$aa = $this->model->getAll();
         //echo count($aa);
         //echo count($this->data2View);
+
+
+        echo $this->data2View['accessLevel'];
 
         $toView = $this->data2View;
         $toView['arrComments'] = $this->model->getAll();
@@ -34,13 +46,14 @@ class Controller
         //print_r($toView);
 
         //print_r($toView['arrComments']);
+        echo $toView['accessLevel'];
 
 
         require_once $viewFile;
     }
 
 
-    function runPostRequest($classModel,$modelParams)
+    public function runPostRequest($classModel,$modelParams)
     {
         $this->model = new $classModel($modelParams);
 

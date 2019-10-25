@@ -36,166 +36,47 @@ $borderlight: #b6c6d2;
     .comments-header-row {
         padding: 15px 0 15px 0;
         border-bottom: 1px solid $borderlight;
+        margin-bottom: 0;
     }
 
     .select-order-mode {
-        font-size: 0.9rem;
+        font-size: 0.9rem;  /*не влазит немного*/
     }
 
-    $rowHeight: 58px;
-
-    .workersTableFilter {
-        margin: 0 4px 0 4px;
-        height: 100px;
-        padding: 10px 0 0 4px;
+    .comment {
+        padding: 10px 0 20px 0;
         border-bottom: 1px solid $borderlight;
-    }
 
-    .workersTableFilter__row {
-        height: 32px;
-    }
+        .header-user {
+            font-size: 0.9rem;
+            /*font-weight: bold;*/
+        }
 
-    .workersTableFilter__label {
-        float: left;
-        height: 100%;
-    }
+        .name {
+            font-weight: bold;
+        }
 
-    #workersTableFilter__calendar {
-        height: 24px;
-        font-size: 14px;
-        float: left;
-        margin-left: 10px;
-    }
+        .edited {
+            font-style: italic;
+        }
 
+        .header-admin {
+            /*@extend .text-md-right;*/
+        }
 
-    #workersTableFilter__curMonthButton {
-        float: left;
-        margin-left: 10px;
-        height: 24px;
-        width: 120px;
-        font-size: 12px;
-    }
+        .row-text {
+            padding: 15px 0 15px 0;
+        }
 
 
-    /*-----------------------------*/
-    $borderlight: #dcdce6;
-    $rowHeight: 64px;
 
-    .workersTable {
-        margin: 12px 20px 12px 20px;
-        border-top: 1px solid $borderlight;
-    }
+        .header-user p {
+            margin-bottom: 0;
+        }
 
-    .workersTable__row {
-        display: block;     /*по ширине содержимого*/
-        float: left;        /*по ширине содержимого*/
-
-        height: $rowHeight;
-        border-bottom: 1px solid $borderlight;
-        padding: 0px 6px 0px 6px;
-    }
-
-    .workersTable__cell {
-        float: left;
-        height: $rowHeight - 16; /* вычитаем margin */
-        padding: 14px 6px 0 6px;
-        margin: 8px 0 8px 0;
-        border-left: 1px solid $borderlight;
-    }
-
-    .workersTable__foto {
-        @extend .workersTable__cell;
-        padding-top: 0px;
-        width: 66px;
-        /*margin: 8px 0 0 0;*/
-        border-left: 0px;   /*уберем лишний бордер*/
     }
 
 
-    .workersTable__idWorker {
-        @extend .workersTable__cell;
-        width: 50px;
-        text-align: right;
-    }
-
-    .workersTable__idWorker_header {
-        @extend .workersTable__idWorker;
-        text-align: center;
-        padding: 20px 0 0 0;
-    }
-
-    .workersTable__name {
-        @extend .workersTable__cell;
-        width: 120px;
-    }
-
-    .workersTable__name_header {
-        @extend .workersTable__name;
-        text-align: center;
-        padding: 20px 0 0 0;
-    }
-
-
-    .workersTable__family {
-        @extend .workersTable__cell;
-        width: 160px;
-    }
-
-    .workersTable__family_header {
-        @extend .workersTable__family;
-        text-align: center;
-        padding: 20px 0 0 0;
-    }
-
-
-    .workersTable__profession {
-        @extend .workersTable__cell;
-        width: 100px;
-    }
-
-    .workersTable__profession_header {
-        @extend .workersTable__profession;
-        text-align: center;
-        padding: 20px 0 0 0;
-    }
-
-    .workersTable__fixSalary {
-        @extend .workersTable__cell;
-        width: 80px;
-        text-align: right;
-    }
-
-    .workersTable__fixSalary_header {
-        @extend .workersTable__fixSalary;
-        text-align: center;
-        padding: 20px 0 0 0;
-    }
-
-
-    .workersTable__bonusSalary {
-        @extend .workersTable__cell;
-        width: 80px;
-        text-align: right;
-    }
-
-    .workersTable__bonusSalary_header {
-        @extend .workersTable__bonusSalary;
-        text-align: center;
-        padding: 20px 0 0 0;
-    }
-
-
-    .workersTable__totalSalary {
-        @extend .workersTable__cell;
-        width: 80px;
-        text-align: right;
-    }
-
-    .workersTable__totalSalary_header {
-        @extend .workersTable__totalSalary;
-        text-align: center;
-        padding-top: 20px;
-    }
 
 }
 

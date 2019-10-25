@@ -156,122 +156,37 @@ h1 {
 }
 
 /*====================================================================*/
-.p01 {
-  /*-----------------------------*/
-}
 .p01 .comments-header-row {
   padding: 15px 0 15px 0;
   border-bottom: 1px solid #b6c6d2;
+  margin-bottom: 0;
 }
 .p01 .select-order-mode {
   font-size: 0.9rem;
+  /*не влазит немного*/
 }
-.p01 .workersTableFilter {
-  margin: 0 4px 0 4px;
-  height: 100px;
-  padding: 10px 0 0 4px;
+.p01 .comment {
+  padding: 10px 0 20px 0;
   border-bottom: 1px solid #b6c6d2;
 }
-.p01 .workersTableFilter__row {
-  height: 32px;
+.p01 .comment .header-user {
+  font-size: 0.9rem;
+  /*font-weight: bold;*/
 }
-.p01 .workersTableFilter__label {
-  float: left;
-  height: 100%;
+.p01 .comment .name {
+  font-weight: bold;
 }
-.p01 #workersTableFilter__calendar {
-  height: 24px;
-  font-size: 14px;
-  float: left;
-  margin-left: 10px;
+.p01 .comment .edited {
+  font-style: italic;
 }
-.p01 #workersTableFilter__curMonthButton {
-  float: left;
-  margin-left: 10px;
-  height: 24px;
-  width: 120px;
-  font-size: 12px;
+.p01 .comment .header-admin {
+  /*@extend .text-md-right;*/
 }
-.p01 .workersTable {
-  margin: 12px 20px 12px 20px;
-  border-top: 1px solid #dcdce6;
+.p01 .comment .row-text {
+  padding: 15px 0 15px 0;
 }
-.p01 .workersTable__row {
-  display: block;
-  /*по ширине содержимого*/
-  float: left;
-  /*по ширине содержимого*/
-  height: 64px;
-  border-bottom: 1px solid #dcdce6;
-  padding: 0px 6px 0px 6px;
-}
-.p01 .workersTable__cell, .p01 .workersTable__totalSalary, .p01 .workersTable__totalSalary_header, .p01 .workersTable__bonusSalary, .p01 .workersTable__bonusSalary_header, .p01 .workersTable__fixSalary, .p01 .workersTable__fixSalary_header, .p01 .workersTable__profession, .p01 .workersTable__profession_header, .p01 .workersTable__family, .p01 .workersTable__family_header, .p01 .workersTable__name, .p01 .workersTable__name_header, .p01 .workersTable__idWorker, .p01 .workersTable__idWorker_header, .p01 .workersTable__foto {
-  float: left;
-  height: 48px;
-  /* вычитаем margin */
-  padding: 14px 6px 0 6px;
-  margin: 8px 0 8px 0;
-  border-left: 1px solid #dcdce6;
-}
-.p01 .workersTable__foto {
-  padding-top: 0px;
-  width: 66px;
-  /*margin: 8px 0 0 0;*/
-  border-left: 0px;
-  /*уберем лишний бордер*/
-}
-.p01 .workersTable__idWorker, .p01 .workersTable__idWorker_header {
-  width: 50px;
-  text-align: right;
-}
-.p01 .workersTable__idWorker_header {
-  text-align: center;
-  padding: 20px 0 0 0;
-}
-.p01 .workersTable__name, .p01 .workersTable__name_header {
-  width: 120px;
-}
-.p01 .workersTable__name_header {
-  text-align: center;
-  padding: 20px 0 0 0;
-}
-.p01 .workersTable__family, .p01 .workersTable__family_header {
-  width: 160px;
-}
-.p01 .workersTable__family_header {
-  text-align: center;
-  padding: 20px 0 0 0;
-}
-.p01 .workersTable__profession, .p01 .workersTable__profession_header {
-  width: 100px;
-}
-.p01 .workersTable__profession_header {
-  text-align: center;
-  padding: 20px 0 0 0;
-}
-.p01 .workersTable__fixSalary, .p01 .workersTable__fixSalary_header {
-  width: 80px;
-  text-align: right;
-}
-.p01 .workersTable__fixSalary_header {
-  text-align: center;
-  padding: 20px 0 0 0;
-}
-.p01 .workersTable__bonusSalary, .p01 .workersTable__bonusSalary_header {
-  width: 80px;
-  text-align: right;
-}
-.p01 .workersTable__bonusSalary_header {
-  text-align: center;
-  padding: 20px 0 0 0;
-}
-.p01 .workersTable__totalSalary, .p01 .workersTable__totalSalary_header {
-  width: 80px;
-  text-align: right;
-}
-.p01 .workersTable__totalSalary_header {
-  text-align: center;
-  padding-top: 20px;
+.p01 .comment .header-user p {
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

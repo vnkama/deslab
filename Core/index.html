@@ -17,11 +17,11 @@
 
         <!--row шапка над ВСЕМИ комментами, сортировка, логин-->
         <div class='form-group row comments-header-row'>
-                <label class="col-md-1 offset-md-6 col-form-label mb-3 mb-md-0 order-md-last"><a href='/login' id='id-login'>Войти</a></label>
+                <label class="col-md-1 offset-md-5 offset-lg-6 col-form-label mb-3 mb-md-0 order-md-last"><a href='/login' id='id-login'>Войти</a></label>
 
                 <label class="col-6 col-md-2 col-form-label">Сортировать:</label>
 
-                <div class='col-6 col-md-3'>
+                <div class='col-6 col-md-4 col-lg-3'>
                     <select size='1' class='custom-select select-order-mode' id='id-select-order-mode'>
                         <option value='date'>по дате. сначала новые</option>
                         <option value='name'>по имени</option>
@@ -31,23 +31,73 @@
 
         </div>
 
-        <!--собственно сами все комментарии-->
-        <?php  foreach ($toView['arrComments'] as $arrComment) {?>
-            <div class='row'>
-                <div class='col-12'>
-                    <?php echo ($arrComment['name']).'<br>';?>
-                </div>
-                <div class='col-12'>
-                    <?php echo ($arrComment['fotoFile']).'<br>';?>
-                </div>
-                <div class='col-12'>
-                    <?php echo ($arrComment['comment']).'<br>';?>
-                </div>
-                <div class='col-12'>
-                    Админ
-                </div>
+
+        <div class='row'>     <!--все комменты-->
+            <div class='col-12'>
+
+                <?php  foreach ($toView['arrComments'] as $arrComment) {?>
+
+                    <div class='row comment'> <!--один коммент с парметрами (имя итп )-->
+                        <div class='col-12'>
+
+                            <div class='row'>   <!--хеадер ОДНОГО комментария, имя, мейл, дата, кнопка редактировать-->
+                                <div class='col-md-10 header-user'> <!--блок видят все-->
+                                    <div class='row'>   <!--имя мейл-->
+                                        <div class='col'>
+                                            <p><span class='text-info name'><?= $arrComment['name'] ?></span>&nbsp;<span class='text-secondary'><?= $arrComment['email'] ?></span></p>
+                                        </div>
+                                    </div>
+
+                                    <div class='row'>   <!--дата, изменен-->
+                                        <div class='col'>
+                                            <span><span class='text-secondary'><?= $arrComment['tsPosted'] ?></span>&nbsp;<?= ($arrComment['moderEdited'])? '<span class=\'edited text-secondary\'>&nbsp;&nbsp;&nbsp;(Изменен администратором)</span>' : '' ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-md-2 header-admin text-md-right'> <!--блок хеадер только для админа-->
+                                    <?php
+                                        if ($toView['accessLevel'] == 'admin' || 1) {
+                                            switch ($arrComment['moderStatus']) {
+                                                case 0:
+                                                    echo "<p class='text-warning'>Проверить</p>";
+                                                    break;
+
+                                                case 1:
+                                                    echo "<p class='text-danger'>Отклонено</p>";
+                                                    break;
+
+                                                case 2:
+                                                    echo "<p class='text-success'>Принято</p>";
+                                                    break;
+                                            }
+                                        }
+                                    ?>
+                                </div>
+
+                            </div> <!--хеадер ОДНОГО комментария -->
+
+                            <div class='row row-text'>  <!-- текст и фотка -->
+
+                                <div class='col-md-6 col-lg-7'>
+                                    <?php echo $arrComment['comment'];?>
+                                </div>
+
+
+                                <?php if (!empty($arrComment['fotoFile'])) { ?>
+                                    <div class='col-md-6 col-lg-5 d-flex justify-content-md-end pt-3 pt-md-0 align-self-start'> <!--фотография-->
+                                        <img src="/img/<?=$arrComment['fotoFile']?>.jpg">
+                                    </div>
+                                <?php } ?>
+
+                            </div>  <!-- текст и фотка -->
+
+                        </div>
+                    </div> <!--один коммент с парметрами, имя итп-->
+
+                <?php }?>
             </div>
-        <?php }?>
+        </div>
 
         <!--ввести коммент-->
         <div class='row'>
