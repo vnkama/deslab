@@ -33,21 +33,10 @@ class Controller
         $classModelName = __NAMESPACE__.'\\'.$classModel;
         $this->model = new $classModelName($modelParams);
 
-        //$aa = $this->model->getAll();
-        //echo count($aa);
-        //echo count($this->data2View);
 
-
-        echo $this->data2View['accessLevel'];
 
         $toView = $this->data2View;
         $toView['arrComments'] = $this->model->getAll();
-        //echo       count($toView);
-        //print_r($toView);
-
-        //print_r($toView['arrComments']);
-        echo $toView['accessLevel'];
-
 
         require_once $viewFile;
     }
