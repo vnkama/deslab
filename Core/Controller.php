@@ -6,14 +6,12 @@ class Controller
 {
     protected $model;
     protected $view;
+
+    protected $data2View;   //массив данных для передачи во view
+
+
+
     protected $arrPostAnswer;   //ответ на post запрос браузера
-
-/*    public function routeGET(){return abort(404);}
-    public function routePOST(){return abort(404);}*/
-
-
-
-
 
 
     function runHtml($htmlFile)
@@ -26,9 +24,19 @@ class Controller
     {
         $this->model = new $classModel($modelParams);
 
-        $this->model->getAll();
+        //$aa = $this->model->getAll();
+        //echo count($aa);
+        //echo count($this->data2View);
 
-        require_once ($viewFile);
+        $toView = $this->data2View;
+        $toView['arrComments'] = $this->model->getAll();
+        //echo       count($toView);
+        //print_r($toView);
+
+        //print_r($toView['arrComments']);
+
+
+        require_once $viewFile;
     }
 
 

@@ -2,12 +2,22 @@
 
 namespace Core;
 
-//use core\BaseController as BaseController ;
+//use Core\Controller;
 
-class IndexController extends BaseController
+class IndexController extends Controller
 {
+    function run()
+    {
+        $this->data2View = [];
+        $this->data2View['title']       = 'Комментарии';
+        $this->data2View['body_html']   = 'index.html';
+        $this->data2View['body_class']  = 'p01';
 
-    function __construct()
+
+        $this->runModelView('template.html',__NAMESPACE__.'\\CommentsModel',['accessLevel' => getAccessLevel()]);
+    }
+
+/*    function __construct()
     {
         parent::__construct('indexPage.php');
     }
@@ -107,5 +117,5 @@ inner join payments py on py.idWorker = s1.idWorker where date_format(py.tsDate,
         $this->arrPostAnswer['workers'] = sql()->select($q);
 
         $this->arrPostAnswer['answerResult'] = 'ok';
-    }
+    }*/
 }

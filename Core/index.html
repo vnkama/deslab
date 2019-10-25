@@ -1,0 +1,31 @@
+<!--содержимое body-->
+<div class='container-fluid body-full-width'>
+    <div class='container jumbotron text-center mb-0 body-header'>
+        <h1>Комментатор.</h1>
+        <p>Тестовое задаие для Design-lab</p>
+    </div>
+
+
+    <div class='container body-job-width'>
+
+
+        <div class='container'>
+            <div class='row'>
+                <div class='col-md-6'>
+                </div>
+                <div class='col-md-6'>
+                </div>
+                <div class='col-md-6'>
+                </div>
+            </div>
+
+            <?php  foreach ($toView['arrComments'] as $arrComment) {?>
+                <?php echo ($arrComment['name']).'<br>';?>
+                <?php echo ($arrComment['email']).'<br>';?>
+                <?php echo ($arrComment['comment']).'<br>';?>
+            <?php }?>
+
+
+        </div>
+    </div>
+</div>

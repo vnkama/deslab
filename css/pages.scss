@@ -105,19 +105,20 @@ h1 {
     font-size: 20px;
 }
 
-
-.bodyFullWidth {
-    width:  100%;
-    min-height: 100vh;
-    background: #f0f2f7;
+.body-header {
+    border-radius: 0px;
 }
 
-.bodyJobWidth {
-    width: 1000px;
-    background: white;
-    border: 1px solid #dddddd;
-    margin: 0 auto 0 auto;
+.body-full-width {
+    width:  100%;
     min-height: 100vh;
+    background: #373B40;
+}
+
+.body-job-width {
+    background: white;
+    min-height: 100vh;
+    border: 1px solid #dddddd;
 }
 
 /*============================================*/
@@ -145,6 +146,7 @@ h1 {
 
 
 .p01 {
+
 
     $borderlight: #dcdce6;
     $rowHeight: 58px;

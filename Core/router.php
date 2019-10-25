@@ -15,7 +15,7 @@
 
 namespace Core;
 
-use Core\Controller;
+//use Core\Controller;
 
 use Error;
 use Exception;
@@ -28,7 +28,7 @@ if (!defined("START_PHP")) die('Directly run of router.php is rejected');
     //запросы вида GET, POST, и вызовы от linux, втч cron, exec
 
 
-    require_once 	'config.php';       //настройки
+    require_once   'config.php';       //настройки
     require_once   'routes.php';
 
     // Добавлять сообщения обо всех ошибках, кроме E_NOTICE
@@ -52,6 +52,13 @@ if (!defined("START_PHP")) die('Directly run of router.php is rejected');
 
 
     $routeType = null;  //должен быть доступен в catch
+
+///////////////////////
+//      глобальные переменные
+//
+
+        $g_sql          = null;     // доступ через функции sql()
+        $g_accessLevel  = 'guest';  // getAccessLevel(),
 
 
 
@@ -79,7 +86,7 @@ try {
             //у нас GET запрос
 
             session_start();
-            $idClient = $_SESSION['clientLogin'] ?? 'guest';  // ну или admin
+            $accessLevel = setAccessLevel($_SESSION['accessLevel'] ?? 'guest');     // ну или admin
 
             $routeType = 'get';
             $routeName = router_getRouteName_GET();
@@ -130,10 +137,10 @@ try {
 
         $funcName = $arrRoutes[$routeKey]['func'];
 
-        if (is_null($arrRoutes[$routeKey]['param']))
-            $controller->$funcName();
-        else {
+        if (array_key_exists('param',$arrRoutes[$routeKey]))
             $controller->$funcName($arrRoutes[$routeKey]['param']);
+        else {
+            $controller->$funcName();
         }
 
 
@@ -180,6 +187,18 @@ function sql()
 {
     global $g_sql;
     return $g_sql;
+}
+
+function getAccessLevel()
+{
+    global $g_accessLevel;
+    return $g_accessLevel;
+}
+
+function setAccessLevel($accessLevel)
+{
+    global $g_accessLevel;
+    $g_accessLevel = $accessLevel;
 }
 
 
