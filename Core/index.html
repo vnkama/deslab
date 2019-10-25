@@ -1,31 +1,79 @@
-<!--содержимое body-->
-<div class='container-fluid body-full-width'>
-    <div class='container jumbotron text-center mb-0 body-header'>
-        <h1>Комментатор.</h1>
-        <p>Тестовое задаие для Design-lab</p>
+<!--содержимое тега body-->
+
+
+<!--содержимае сайта на всю. ширину экрана с полями-->
+<div class='site-full-width'>
+
+    <!--заголовок сайта-->
+    <div class='container p-0'>
+        <div class='jumbotron text-center mb-0 site-header'>
+            <h1>Комментатор.</h1>
+            <p>Тестовое задание для Design-lab</p>
+        </div>
     </div>
 
 
-    <div class='container body-job-width'>
+    <div class='container site-job-width'>
 
+        <!--row шапка над ВСЕМИ комментами, сортировка, логин-->
+        <div class='form-group row comments-header-row'>
+                <label class="col-md-1 offset-md-6 col-form-label mb-3 mb-md-0 order-md-last"><a href='/login' id='id-login'>Войти</a></label>
 
-        <div class='container'>
+                <label class="col-6 col-md-2 col-form-label">Сортировать:</label>
+
+                <div class='col-6 col-md-3'>
+                    <select size='1' class='custom-select select-order-mode' id='id-select-order-mode'>
+                        <option value='date'>по дате. сначала новые</option>
+                        <option value='name'>по имени</option>
+                        <option value='email'>по email</option>
+                    </select>
+                </div>
+
+        </div>
+
+        <!--собственно сами все комментарии-->
+        <?php  foreach ($toView['arrComments'] as $arrComment) {?>
             <div class='row'>
-                <div class='col-md-6'>
+                <div class='col-12'>
+                    <?php echo ($arrComment['name']).'<br>';?>
                 </div>
-                <div class='col-md-6'>
+                <div class='col-12'>
+                    <?php echo ($arrComment['fotoFile']).'<br>';?>
                 </div>
-                <div class='col-md-6'>
+                <div class='col-12'>
+                    <?php echo ($arrComment['comment']).'<br>';?>
+                </div>
+                <div class='col-12'>
+                    Админ
                 </div>
             </div>
+        <?php }?>
 
-            <?php  foreach ($toView['arrComments'] as $arrComment) {?>
-                <?php echo ($arrComment['name']).'<br>';?>
-                <?php echo ($arrComment['email']).'<br>';?>
-                <?php echo ($arrComment['comment']).'<br>';?>
-            <?php }?>
+        <!--ввести коммент-->
+        <div class='row'>
+            <div class='col-12'>
+               Введите комментарий
+            </div>
 
+            <div class='col-12'>
+                имя
+            </div>
 
+            <div class='col-12'>
+                мейл
+            </div>
+
+            <div class='col-12'>
+                фотка
+            </div>
+
+            <div class='col-12'>
+                текст нового коммента
+            </div>
+
+            <div class='col-12'>
+                отправить. зарузить фото
+            </div>
         </div>
     </div>
 </div>

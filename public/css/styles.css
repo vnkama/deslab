@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/*@import "reset.scss";*/
 @font-face {
   font-family: "Open Sans";
   src: url("../fonts/openSans/OpenSans-Light.woff2") format("woff2"), url("../fonts/openSans/OpenSans-Light.woff") format("woff");
@@ -105,124 +106,36 @@
   color: #0A0A0A;
 }
 
-/*============================================*/
-/*reboot.css*/
-/*html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video, button {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 1rem;
-    font: inherit;
-    vertical-align: baseline;
-    color: #000000;
-}
+/*стили для всего сайта, не связанны с конкретной страницей
+	применять с Bootstrap
+*/
+/*
+$bodyBackground: #f0f2f7;
+$backgroundBlueHover: #f5f7fa;
+$controlBorder: 1px solid #a9a9a9;
 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
-    box-sizing: border-box;
-}
-
-body {
-    line-height: 1;
-}
-
-ol, ul {
-    list-style: none;
-}
-
-blockquote, q {
-    quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: "";
-    content: none;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-p {
-    line-height: 1.15;
-}
-
-img, button, input, label, select, textarea {
-    display: block;
-}
-
-html, body, div, form, table,
-img, button, input, label, select, textarea {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0px solid #000000;
-}
-
-button, input, label, select, textarea {
-    border: 1px solid #e0e0e0;
-}
-
-textarea {
-    padding: 5px 0 0 8px;
-}
-
-!*типичная синяя кнопка*!
-.blueButton {
-    height: 30px;
-    background-color: #5181b8;
-    padding: 7px 16px 8px 16px;
-    border: 0px;
-    border-radius: 4px;
-    color: #ffffff;
-    cursor: pointer;
-    width: 80px;
-}
-
-.blueButton:hover {
-    background-color: #6191c8;
-}
-
-!*типчиный инпут*!
-input {
-    padding: 0 0 0 6px;
-    font-size: 0.875rem;
-    border:  1px solid #e0e0e0;
-}*/
-/*============================================*/
-h1 {
-  font-size: 20px;
-}
-
-.body-header {
-  border-radius: 0px;
-}
-
-.body-full-width {
+$graySupelight:	#ededed;	//серая граница между белым и белым, еле заметна
+*/
+.site-full-width {
   width: 100%;
   min-height: 100vh;
   background: #373B40;
 }
 
-.body-job-width {
+.site-job-width {
   background: white;
   min-height: 100vh;
-  border: 1px solid #dddddd;
+  /*border: 1px solid #dddddd;*/
+}
+
+.site-header {
+  border-radius: 0;
+  border-bottom: 1px solid #b6c6d2;
+}
+
+/*============================================*/
+h1 {
+  font-size: 24px;
 }
 
 /*============================================*/
@@ -246,11 +159,18 @@ h1 {
 .p01 {
   /*-----------------------------*/
 }
+.p01 .comments-header-row {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #b6c6d2;
+}
+.p01 .select-order-mode {
+  font-size: 0.9rem;
+}
 .p01 .workersTableFilter {
   margin: 0 4px 0 4px;
   height: 100px;
   padding: 10px 0 0 4px;
-  border-bottom: 1px solid #dcdce6;
+  border-bottom: 1px solid #b6c6d2;
 }
 .p01 .workersTableFilter__row {
   height: 32px;

@@ -1,0 +1,37 @@
+/*стили для всего сайта, не связанны с конкретной страницей
+	применять с Bootstrap
+*/
+
+/*
+$bodyBackground: #f0f2f7;
+$backgroundBlueHover: #f5f7fa;
+$controlBorder: 1px solid #a9a9a9;
+
+$graySupelight:	#ededed;	//серая граница между белым и белым, еле заметна
+*/
+
+
+$borderlight: #b6c6d2;
+
+
+.site-full-width {
+	width:  100%;
+	min-height: 100vh;
+	background: #373B40;
+}
+
+
+.site-job-width {
+	background: white;
+	min-height: 100vh;
+	/*border: 1px solid #dddddd;*/
+}
+
+
+.site-header {
+	border-radius: 0;
+	border-bottom: 1px solid $borderlight;
+}
+
+
+
