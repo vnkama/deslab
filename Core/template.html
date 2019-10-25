@@ -3,6 +3,7 @@
 
 <head lang="ru">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= ($toView['title']) ?? ''  ?></title>
 
     <link rel='stylesheet' href='css/bootstrap.min.css'>
@@ -16,12 +17,17 @@
 </head>
 
 
-<!--BODY-->
+<!-- тег BODY -->
 <?php echo (isset($toView['body_class'])) ? "<body class='${toView['body_class']}'>" : '<body>' ?>
 
-<!--вся начинка body-->
-<?php (!isset($toView['body_html'])) ?: include($toView['body_html']); ?>
 
+    <!--вся начинка body-->
+    <?php (!isset($toView['body_html'])) ?: include($toView['body_html']); ?>
+
+
+<!-- тег BODY -->
 </body>
+
+
 
 </html>
