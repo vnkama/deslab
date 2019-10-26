@@ -4,20 +4,9 @@ document.addEventListener('DOMContentLoaded', ready);
 
 function ready()
 {
-    pageReady();
+    //pageReady();
 
-    //нстройка галереи фото fancybox
-    // http://fancyapps.com/fancybox/3/docs/#options
 
-    $.fancybox.defaults.keyboard = false;
-    $.fancybox.defaults.arrows = false;
-    $.fancybox.defaults.infobar = true;
-    $.fancybox.defaults.buttons = ["close"];
-    $.fancybox.defaults.wheel = false;
-
-    $("[data-fancybox]").fancybox({
-        clickContent    : 'close'
-    });
 }
 
 function unixtime2str(xTime)

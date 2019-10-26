@@ -60,7 +60,7 @@ $graySupelight:	#ededed;	//серая граница между белым и б
   /*не влазит немного*/
 }
 .p01 .comment {
-  padding: 10px 0 20px 0;
+  padding: 10px 0 24px 0;
   border-bottom: 1px solid #b6c6d2;
 }
 .p01 .comment .header-user {
@@ -81,6 +81,9 @@ $graySupelight:	#ededed;	//серая граница между белым и б
 }
 .p01 .comment .header-user p {
   margin-bottom: 0;
+}
+.p01 .comment .admin-footer-row {
+  padding-top: 10px;
 }
 
 /*# sourceMappingURL=styles.css.map */

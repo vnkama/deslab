@@ -15,9 +15,11 @@
 
     <div class='container site-job-width'>
 
-        <!--row шапка над ВСЕМИ комментами, сортировка, логин-->
+        <!--row шапка над ВСЕМИ комментами, сортировка, логин                               -->
         <div class='form-group row comments-header-row'>
-                <label class="col-md-1 offset-md-5 offset-lg-6 col-form-label mb-3 mb-md-0 order-md-last"><a href='/login' id='id-login'>Войти</a></label>
+                <label class="col-md-2 offset-md-4 col-lg-1 offset-lg-6 col-form-label order-md-last mb-3 mb-md-0 d-flex justify-content-md-end">
+                    <a href='/login' id='id-login'>Войти</a>
+                </label>
 
                 <label class="col-6 col-md-2 col-form-label">Сортировать:</label>
 
@@ -91,6 +93,21 @@
                                 <?php } ?>
 
                             </div>  <!-- текст и фотка -->
+
+                            <?php if ($toView['accessLevel'] == 'admin' || 1) { ?>
+                                <div class='row admin-footer-row'> <!-- блок кнопок админа -->
+                                    <div class='col-md-3 col-lg-2 pt-3'>
+                                        <button type="button" class="btn btn-danger btn-sm btn-block">Отклонить</button>
+                                    </div>
+                                    <div class='col-md-3 col-lg-2 pt-3'>
+                                        <button type="button" class="btn btn-success btn-sm btn-block">Принять</button>
+                                    </div>
+                                    <div class='col-md-3 col-lg-2 pt-3'>
+                                        <button type="button" class="btn btn-sm btn-block">Редактировать</button>
+                                    </div>
+                                </div>
+                            <?php } ?>
+
 
                         </div>
                     </div> <!--один коммент с парметрами, имя итп-->
