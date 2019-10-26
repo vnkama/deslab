@@ -44,7 +44,7 @@ $borderlight: #b6c6d2;
     }
 
     .comment {
-        padding: 10px 0 24px 0;
+        padding: 16px 0 30px 0;
         border-bottom: 1px solid $borderlight;
 
         .header-user {
@@ -78,6 +78,14 @@ $borderlight: #b6c6d2;
             padding-top: 10px;
         }
 
+    }
+
+    .add-comment {
+        padding: 16px 0 30px 0;
+        /*
+        border-bottom: 1px solid $borderlight;
+        margin-bottom: 10px;
+        */
     }
 
 

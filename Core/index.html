@@ -116,31 +116,78 @@
             </div>
         </div>
 
-        <!--ввести коммент-->
-        <div class='row'>
+        <!--блок ввести коммент-->
+        <div class='row add-comment'>       <!--весь блок ввода комментов, все контролы-->
             <div class='col-12'>
-               Введите комментарий
-            </div>
 
-            <div class='col-12'>
-                имя
-            </div>
+                <div class='row'>
+                    <div class='col-12'>
+                        <h5>Введите ваш комментарий</h5>
+                    </div>
+                </div>
 
-            <div class='col-12'>
-                мейл
-            </div>
 
-            <div class='col-12'>
-                фотка
-            </div>
+                <!-- поле имя -->
+                <div class='row form-group'>
 
-            <div class='col-12'>
-                текст нового коммента
-            </div>
+                    <label class="col-md-3 col-lg-2 col-form-label">
+                        Ваше имя:
+                    </label>
 
-            <div class='col-12'>
-                отправить. зарузить фото
+                    <div class='col-md-6 col-lg-3'>
+                        <input type='text' class='form-control' id='id-input-name' placeholder='Иван Иванович'>
+                    </div>
+
+                </div>
+
+
+                <!-- поле емайл -->
+                <div class='row form-group'>
+                    <label class="col-md-3 col-lg-2 col-form-label">
+                        E-mail:
+                    </label>
+
+                    <div class='col-md-6 col-lg-3'>
+                        <input type='email' class='form-control ' id='id-input-email' placeholder='info@yandex.ru'>
+                    </div>
+                </div>
+
+
+                <!-- поле кнопка загрузки фото -->
+                <div class='row form-group mt-4 mb-4'>
+                    <div class='col-md-3 col-lg-2 offset-md-3 offset-lg-2'>
+                        <button type='button' class='btn btn-sm btn-block' id='id-button-add-foto'>Добавить фото</button>
+                    </div>
+                </div>
+
+                <!-- загруженное фото -->
+                <div class='row form-group mt-4 mb-4  d-none'>
+                    <div class='offset-md-3 offset-lg-2 col pt-3 pt-md-0 '> <!--фотография-->
+                        <img src="/img/<?=$arrComment['fotoFile']?>.jpg">
+                    </div>
+                </div>
+
+
+                <!-- поле текста -->
+                <div class='row form-group'>
+                    <label class="col-md-3 col-lg-2 col-form-label">
+                        Комментарий:
+                    </label>
+
+                    <div class='col-md-6 col-lg-8'>
+                        <textarea class="form-control" id="id-textarea-comment" rows="5"></textarea>
+                    </div>
+                </div>
+
+                <!-- кнопка отправить на модерацию -->
+                <div class='row form-group mt-5 mb-4'>
+                    <div class='col-md-4 col-lg-3 offset-md-3 offset-lg-2'>
+                        <button type='button' class='btn btn-sm' id='id-button-send-comment'>Отправить на модерацию</button>
+                    </div>
+                </div>
+
+
             </div>
-        </div>
+        </div> <!--блок ввести коммент-->
     </div>
 </div>
