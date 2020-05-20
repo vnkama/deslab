@@ -1,0 +1,63 @@
+
+<div class='row header'>
+    <label class="col-12 col-form-label">
+        <a href='/'>На главную</a>
+    </label>
+</div>
+
+<div class='row d-flex justify-content-center'>
+
+    <div class='col-11 col-md-8 col-lg-6 login'>
+        <div class='row header'>
+            <div class='col'>
+                <h5>Авторизуйтесь</h5>
+            </div>
+        </div>
+
+        <!--ввод логина-->
+        <div class='row mt-3'>
+            <label class="col-md-6 col-form-label">
+                Логин:
+            </label>
+
+            <div class='col-md-6'>
+                <input type='text' class='form-control' id='id-input-login' placeholder='your login'>
+            </div>
+        </div>
+
+        <!-- сообщение об ошибке неверный логин -->
+        <div class='row login-message mb-2'>
+            <div class="col-md-6 offset-md-6">
+                <span class=' text-danger' id='id-login-message' ></span>
+            </div>
+        </div>
+
+        <!--ввод пароля-->
+        <div class='row'>
+            <label class="col-md-6 col-lg-6 col-form-label">
+                Пароль:
+            </label>
+
+            <div class='col-md-6 col-lg-6'>
+                <input type='text' class='form-control' id='id-input-password' placeholder='password'>
+            </div>
+        </div>
+
+        <!-- сообщение об ошибке неверный пароль -->
+        <div class='row password-message mb-2'>
+            <div class="col-md-6 offset-md-6">
+                <span class=' text-danger' id='id-password-message' ></span>
+            </div>
+        </div>
+
+
+        <!-- поле кнопка загрузки фото -->
+        <div class='row form-group mt-4'>
+            <div class='col-4 offset-4 '>
+                <button type='button' class='btn btn-sm btn-block' id='id-button-ok'>ОК</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

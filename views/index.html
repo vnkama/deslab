@@ -1,0 +1,182 @@
+<!-- контент страницы, на рабочую ширину сайта  -->
+<!-- кроме хедера сайта -->
+
+
+        <!--row шапка над ВСЕМИ комментами, сортировка, логин                               -->
+        <div class='form-group row comments-header-row'>
+            <label class="col-md-2 offset-md-4 col-lg-1 offset-lg-6 col-form-label order-md-last mb-3 mb-md-0 d-flex justify-content-md-end">
+                <?php if ($toView['isAdmin']) { ?>
+                    Вы администратор. <a href='/login' id='id-logoff'>Выйти</a>
+                <?php } else { ?>
+                    <a href='/login' id='id-login'>Войти</a>
+                <?php } ?>
+            </label>
+
+            <label class="col-6 col-md-2 col-form-label">Сортировать:</label>
+
+            <div class='col-6 col-md-4 col-lg-3'>
+                <select size='1' class='custom-select select-order-mode' id='id-select-order-mode'>
+                    <option value='date'>по дате. сначала новые</option>
+                    <option value='name'>по имени</option>
+                    <option value='email'>по email</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class='row'>     <!--все комменты-->
+            <div class='col-12'>
+
+                <?php  foreach ($toView['arrComments'] as $arrComment) {?>
+
+                    <div class='row comment'> <!--один коммент с парметрами (имя итп )-->
+                        <div class='col-12'>
+
+                            <div class='row'>   <!--хеадер ОДНОГО комментария, имя, мейл, дата, кнопка редактировать-->
+                                <div class='col-md-10 header-user'> <!--блок видят все-->
+                                    <div class='row'>   <!--имя мейл-->
+                                        <div class='col'>
+                                            <p><span class='text-info name'><?= $arrComment['name'] ?></span>&nbsp;<span class='text-secondary'><?= $arrComment['email'] ?></span></p>
+                                        </div>
+                                    </div>
+
+                                    <div class='row'>   <!--дата, изменен-->
+                                        <div class='col'>
+                                            <span><span class='text-secondary'><?= $arrComment['tsPosted'] ?></span>&nbsp;<?= ($arrComment['moderEdited'])? '<span class=\'edited text-secondary\'>&nbsp;&nbsp;&nbsp;(Изменен администратором)</span>' : '' ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-md-2 header-admin text-md-right'> <!--блок хеадер только для админа-->
+                                    <?php
+                                        if ($toView['isAdmin'] || 1) {
+                                            switch ($arrComment['moderStatus']) {
+                                                case 0:
+                                                    echo "<p class='text-warning'>Проверить</p>";
+                                                    break;
+
+                                                case 1:
+                                                    echo "<p class='text-danger'>Отклонено</p>";
+                                                    break;
+
+                                                case 2:
+                                                    echo "<p class='text-success'>Принято</p>";
+                                                    break;
+                                            }
+                                        }
+                                    ?>
+                                </div>
+
+                            </div> <!--хеадер ОДНОГО комментария -->
+
+                            <div class='row row-text'>  <!-- текст и фотка -->
+
+                                <div class='col-md-6 col-lg-7'>
+                                    <?php echo $arrComment['comment'];?>
+                                </div>
+
+
+                                <?php if (!empty($arrComment['fotoFile'])) { ?>
+                                    <div class='col-md-6 col-lg-5 d-flex justify-content-md-end pt-3 pt-md-0 align-self-start'> <!--фотография-->
+                                        <img src="/img/<?=$arrComment['fotoFile']?>.jpg">
+                                    </div>
+                                <?php } ?>
+
+                            </div>  <!-- текст и фотка -->
+
+                            <?php if ($toView['isAdmin'] || 1) { ?>
+                                <div class='row admin-footer-row'> <!-- блок кнопок админа -->
+                                    <div class='col-md-3 col-lg-2 pt-3'>
+                                        <button type="button" class="btn btn-danger btn-sm btn-block">Отклонить</button>
+                                    </div>
+                                    <div class='col-md-3 col-lg-2 pt-3'>
+                                        <button type="button" class="btn btn-success btn-sm btn-block">Принять</button>
+                                    </div>
+                                    <div class='col-md-3 col-lg-2 pt-3'>
+                                        <button type="button" class="btn btn-sm btn-block">Редактировать</button>
+                                    </div>
+                                </div>
+                            <?php } ?>
+
+
+                        </div>
+                    </div> <!--один коммент с парметрами, имя итп-->
+
+                <?php }?>
+            </div>
+        </div>
+
+        <!--блок ввести коммент-->
+        <div class='row add-comment'>       <!--весь блок ввода комментов, все контролы-->
+            <div class='col-12'>
+
+                <div class='row'>
+                    <div class='col-12'>
+                        <h5>Введите ваш комментарий</h5>
+                    </div>
+                </div>
+
+
+                <!-- поле имя -->
+                <div class='row form-group'>
+
+                    <label class="col-md-3 col-lg-2 col-form-label">
+                        Ваше имя:
+                    </label>
+
+                    <div class='col-md-6 col-lg-3'>
+                        <input type='text' class='form-control' id='id-input-name' placeholder='Иван Иванович'>
+                    </div>
+
+                </div>
+
+
+                <!-- поле емайл -->
+                <div class='row form-group'>
+                    <label class="col-md-3 col-lg-2 col-form-label">
+                        E-mail:
+                    </label>
+
+                    <div class='col-md-6 col-lg-3'>
+                        <input type='email' class='form-control ' id='id-input-email' placeholder='info@yandex.ru'>
+                    </div>
+                </div>
+
+
+                <!-- поле кнопка загрузки фото -->
+                <div class='row form-group mt-4 mb-4'>
+                    <div class='col-md-3 col-lg-2 offset-md-3 offset-lg-2'>
+                        <button type='button' class='btn btn-sm btn-block' id='id-button-add-foto'>Добавить фото</button>
+                    </div>
+                </div>
+
+                <!-- загруженное фото -->
+                <div class='row form-group mt-4 mb-4  d-none'>
+                    <div class='offset-md-3 offset-lg-2 col pt-3 pt-md-0 '> <!--фотография-->
+                        <img src="/img/<?=$arrComment['fotoFile']?>.jpg">
+                    </div>
+                </div>
+
+
+                <!-- поле текста -->
+                <div class='row form-group'>
+                    <label class="col-md-3 col-lg-2 col-form-label">
+                        Комментарий:
+                    </label>
+
+                    <div class='col-md-6 col-lg-8'>
+                        <textarea class="form-control" id="id-textarea-comment" rows="5"></textarea>
+                    </div>
+                </div>
+
+                <!-- кнопка отправить на модерацию -->
+                <div class='row form-group mt-5 mb-4'>
+                    <div class='col-md-4 col-lg-3 offset-md-3 offset-lg-2'>
+                        <button type='button' class='btn btn-sm' id='id-button-send-comment'>Отправить на модерацию</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div> <!--блок ввести коммент-->
+    </div>

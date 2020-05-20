@@ -19,7 +19,7 @@ RewriteRule (.*) https://%1/$1 [R=301,L]
 
 
 RewriteCond %{REQUEST_FILENAME} ^(.*)/$ [NC]
-RewriteRule (.*) start.php [L]
+RewriteRule (.*) index.php [L]
 
 RewriteCond %{REQUEST_FILENAME} ^(.*)/index$ [NC]
 RewriteRule (.*) / [R=301,L]
@@ -33,4 +33,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !(.*)/favicon.png$ [NC]
 RewriteCond %{REQUEST_FILENAME} !(.*)/robots.txt$ [NC]
 RewriteCond %{REQUEST_FILENAME} !(.*)/sitemap.xml$ [NC]
-RewriteRule (.*) start.php [L]
+RewriteRule (.*) index.php [L]

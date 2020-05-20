@@ -93,4 +93,39 @@ $graySupelight:	#ededed;	//серая граница между белым и б
   */
 }
 
+.header {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #b6c6d2;
+  margin-bottom: 0;
+}
+
+/*страница логин*/
+.p02 .header {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #b6c6d2;
+  margin-bottom: 0;
+}
+.p02 .login {
+  margin-top: 5rem;
+  /*padding-bottom: 0.3rem;*/
+  border: 1px solid #b6c6d2;
+}
+.p02 .login .login-header {
+  padding: 1rem 0 1rem 0;
+  border-bottom: 1px solid #b6c6d2;
+  margin-bottom: 1.5rem;
+}
+.p02 .login .login-message, .p02 .login .password-message {
+  font-size: 0.75rem;
+  font-style: italic;
+  height: 1rem;
+}
+
+/*страница ошибка 404*/
+.p03 .header {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #b6c6d2;
+  margin-bottom: 0;
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -2,37 +2,75 @@
 
 namespace Core;
 
+use \Error;
+
+
+
 class Controller
 {
     protected $model;
     protected $view;
 
-    protected $data2View;   //массив данных для передачи во view
-
-    function __construct()
-    {
-        $this->data2View['accessLevel'] = getAccessLevel();   //массив данных для передачи во view
-    }
-
-
+    protected $arrPostRequest;  //запрос
     protected $arrPostAnswer;   //ответ на post запрос браузера
 
 
-    public function runHtml($htmlFile)
+    protected $data2View;   //массив данных для передачи во view
+
+    protected $isAdmin;
+
+    function __construct()
+    {
+        $this->isAdmin = Authorization::getInst()->isAdmin();
+    }
+
+
+    /**
+     * Самый простейшйи обрабочтик запроса, просто полностью показывает статический файл
+     * никаких шаблонов, никаких парметров !!
+     *
+     * можно прямо из routes.php вызывать
+     *
+     * @param $htmlFile
+     */
+/*    public function routeHtml($htmlFile)
     {
         require_once ($htmlFile);
+    }*/
+
+
+
+    /**
+     *
+     * @param $params
+     */
+    public function routeView($toView)
+    {
+        //logout('Controller::routeView');
+        require_once ($toView['templateFile']);
+    }
+
+
+    /**
+     * Обрабочтки запроса.
+     *
+     * Модель не используем, показываем view с параметрами
+     *
+     * @param $viewFile
+     */
+    public function runView($viewFile='template.html',$toView=[])
+    {
+        $toView = $this->data2View;
+        require_once ($viewFile);
     }
 
 
     public function runModelView($viewFile,$classModel,$modelParams=[])
     {
-        //$this->data2View['accessLevel']  = getAccessLevel();
+        $this->data2View['isAdmin'] = $modelParams['isAdmin'] = Authorization::getInst()->isAdmin();
 
-        $modelParams['accessLevel'] = $this->data2View['accessLevel'];
-
-        $classModelName = __NAMESPACE__.'\\'.$classModel;
+        $classModelName = "\\models\\$classModel";
         $this->model = new $classModelName($modelParams);
-
 
 
         $toView = $this->data2View;
@@ -52,36 +90,56 @@ class Controller
     }
 
 
-    protected function getOperationFmPost()
+    protected function getDataFromPostRequest()
+    {
+        if (!isset($_POST['jsonPostRequest'])) throw new Error();
+
+        $this->arrPostRequest = json_decode($_POST['jsonPostRequest'],true);
+    }
+
+    /**
+     * возвращает название операции из POST запроса
+     *
+     * @return mixed
+     */
+    protected function getPostOperation()
     {
         //проверка на корректность
-        if (!isset($_POST['operation']) ) throw new Error('post_error');
+        if (!isset($this->arrPostRequest['operation']) ) throw new Error('post_error');
 
-        $len = strlen($_POST['operation']);
+        $len = strlen($this->arrPostRequest['operation']);
         if ($len <3 || $len > MAX_STRLEN)  throw new Error('post_error');
 
-        //проверка на белый список символов
-        if (!preg_match('#^[A-z\d\-_]{3,100}$#',$_POST['operation'])) throw new Error('post_error');
-
         //все ОК вернем операцию
-        return $_POST['operation'];
+        return $this->arrPostRequest['operation'];
     }
 
     protected function getPostInt($paramName)
     {
         //проверка на корректность
-        if (!isset($_POST[$paramName]) ) throw new Exception('post_error');
+        if (!isset($this->arrPostRequest[$paramName]) ) throw new Error('post_error');
 
-        $len = strlen($_POST[$paramName]);
-        if ($len <1 || $len > 11)  throw new Exception('post_error');
+        $len = strlen($this->arrPostRequest[$paramName]);
+        if ($len <1 || $len > 11)  throw new Error('post_error');
 
         //проверка регуляркой
-        if (!preg_match('#^-?[\d]{1,10}$#',$_POST[$paramName])) throw new Exception('post_error');
+        if (!preg_match('#^-?[\d]{1,10}$#',$this->arrPostRequest[$paramName])) throw new Error('post_error');
 
-        return (int)$_POST[$paramName];
+        return (int)$this->arrPostRequest[$paramName];
     }
 
-    protected function getPostDatetime($paramName)
+    protected function getPostString($paramName,$maxLen = MAX_STRLEN)
+    {
+        //проверка на корректность
+        if (!isset($this->arrPostRequest[$paramName]) ) throw new Error('post_error');
+
+        $len = strlen($this->arrPostRequest[$paramName]);
+        if ($len <1 || $len > $maxLen)  throw new Error('post_error');
+
+        return (string)$this->arrPostRequest[$paramName];
+    }
+
+/*    protected function getPostDatetime($paramName)
     {
         //проверка на корректность
         if (!isset($_POST[$paramName]) ) throw new Exception('post_error');
@@ -92,9 +150,9 @@ class Controller
         if (!preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d$#',$_POST[$paramName])) throw new Exception('post_error');
 
         return (string)$_POST[$paramName];
-    }
+    }*/
 
-    public function runM($bundleName)
+/*    public function runM($bundleName)
     {
         $bundleName = 'App\Bundles\\'.$bundleName;
         $this->Bundle = new $bundleName();
@@ -112,5 +170,5 @@ class Controller
         $arrBlade = $this->Bundle->getAll();    //данные из модели
 
         return view($viewName,$arrBlade);
-    }
+    }*/
 }

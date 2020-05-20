@@ -21,10 +21,27 @@
 <!-- тег BODY -->
 <?php echo (isset($toView['body_class'])) ? "<body class='${toView['body_class']}'>" : '<body>' ?>
 
+    <!--содержимае сайта на всю. ширину экрана с полями-->
+    <div class='site-full-width'>
 
-    <!--вся начинка body-->
-    <?php (!isset($toView['body_html'])) ?: include($toView['body_html']); ?>
+        <!--заголовок сайта-->
+        <div class='container p-0'>
+            <div class='jumbotron text-center mb-0 site-header'>
+                <h1>Комментатор.</h1>
+                <p>Тестовое задание для Design-lab</p>
+            </div>
+        </div>
 
+
+        <!-- блок - на всю рабочую(контентную) ширину сайта -->
+        <div class='container site-job-width'>
+
+            <!--вся начинка body-->
+            <?php //(!isset($toView['body_html'])) ?: include('../views/'.$toView['body_html']); ?>
+            <?php include('../views/index.html'); ?>
+        </div>
+
+    </div>
 
 <!-- тег BODY -->
 </body>

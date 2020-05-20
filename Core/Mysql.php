@@ -1,24 +1,13 @@
 <?php 
-namespace Core;
+namespace core;
 
-if (!defined('ROUTER_PHP'))	{die("Directly run of this file: {".__FILE__."} is rejected");}
+//if (!defined('ROUTER_PHP'))	{die("Directly run of this file: {".__FILE__."} is rejected");}
 
-
+use \Error;
 
 const MYSQL_MAX_STRLEN                    = 8000;   //макс длинна стрнга в cSql
 
-/**
- * простейшая проверка строки запроса перед вызовом функций mysqli
- * @param $str
- */
-function testSqlString($str)
-{
-    if (!is_string($str)) throw new Error();
 
-    $len=strlen($str);
-    if ($len < 2 || $len > MYSQL_MAX_STRLEN) throw new Error();
-    return 1;
-}
 
 
 /**
@@ -31,21 +20,33 @@ class Mysql
 { 
 	private $dblink;
 
+    /**
+     * простейшая проверка строки запроса перед вызовом функций mysqli
+     * @param $str
+     */
+    function testString($str)
+    {
+        if (!is_string($str)) throw new Error();
 
-    public function __construct()
+        $len=strlen($str);
+        if ($len < 2 || $len > MYSQL_MAX_STRLEN) throw new Error();
+        return 1;
+    }
+
+    public function __construct($config)
     {
 
         $this->dblink = mysqli_connect(
             'localhost',
-            DB_USER,
-            DB_PASSWORD,
-            DB_DATABASE
+            $config['username'],
+            $config['password'],
+            $config['database']
         );
 
         if (!$this->dblink) throw new Error();
 
 
-        if (!mysqli_select_db($this->dblink, DB_DATABASE))  throw new Error();
+        if (!mysqli_select_db($this->dblink, $config['database']))  throw new Error();
 
         // указывать кодировку нужно втч для mysqli_real_escape_string
         if (!mysqli_set_charset($this->dblink, 'utf8mb4')) throw new Error();
@@ -61,7 +62,7 @@ class Mysql
      */
     public function insert($q)
     {
-        testSqlString($q);
+        $this->testString($q);
 
         if (!mysqli_query($this->dblink, $q)) throw new Error();
     }
@@ -77,7 +78,7 @@ class Mysql
      */
     public function selectValue($q)
     {
-        testSqlString($q);
+        $this->testString($q);
 
         $mysql_result=mysqli_query($this->dblink, $q);
 
@@ -102,9 +103,9 @@ class Mysql
      * !! осовбождается результат
      *
      */
-    public function selectRec($q)
+    public function selectRecord($q)
     {
-        if (!testSqlString($q)) throw new Error();
+        $this->testString($q);
 
         $mysql_result=mysqli_query($this->dblink, $q);
         if (!$mysql_result)  throw new Error();
@@ -140,7 +141,7 @@ class Mysql
     {
         //если ответ пустой,	то вернет  arrResult = null
 
-        if (!testSqlString($q)) throw new Error($q);
+        $this->testString($q);
 
         $mysql_result=mysqli_query($this->dblink, $q);
         if  (!$mysql_result) throw new Error();
@@ -165,4 +166,4 @@ class Mysql
 
 
 
-} // class cSql
+}

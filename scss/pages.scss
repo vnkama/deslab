@@ -1,0 +1,141 @@
+
+/*============================================*/
+/*h1 {
+    font-size: 24px;
+}*/
+
+
+
+/*============================================*/
+
+/* используется как outer при выранивании текста в блоке */
+.vertical-align div {
+    display: inline-block;
+    vertical-align: middle;
+    max-width:  96%;    /* При 100% съезжает верстка */
+}
+
+.vertical-align:before {
+    content: '';
+    display: inline-block;
+    min-height: inherit;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
+
+
+
+/*====================================================================*/
+
+$borderlight: #b6c6d2;
+
+.p01 {
+
+    .comments-header-row {
+        padding: 15px 0 15px 0;
+        border-bottom: 1px solid $borderlight;
+        margin-bottom: 0;
+    }
+
+    .select-order-mode {
+        font-size: 0.9rem;  /*не влазит немного*/
+    }
+
+    .comment {
+        padding: 16px 0 30px 0;
+        border-bottom: 1px solid $borderlight;
+
+        .header-user {
+            font-size: 0.9rem;
+            /*font-weight: bold;*/
+        }
+
+        .name {
+            font-weight: bold;
+        }
+
+        .edited {
+            font-style: italic;
+        }
+
+        .header-admin {
+            /*@extend .text-md-right;*/
+        }
+
+        .row-text {
+            padding: 15px 0 15px 0;
+        }
+
+
+
+        .header-user p {
+            margin-bottom: 0;
+        }
+
+        .admin-footer-row {
+            padding-top: 10px;
+        }
+
+    }
+
+    .add-comment {
+        padding: 16px 0 30px 0;
+        /*
+        border-bottom: 1px solid $borderlight;
+        margin-bottom: 10px;
+        */
+    }
+}
+.header {
+    padding: 15px 0 15px 0;
+    border-bottom: 1px solid $borderlight;
+    margin-bottom: 0;
+}
+
+
+
+/*страница логин*/
+.p02 {
+    .header {
+        padding: 15px 0 15px 0;
+        border-bottom: 1px solid $borderlight;
+        margin-bottom: 0;
+    }
+
+
+    .login {
+        margin-top: 5rem;
+        /*padding-bottom: 0.3rem;*/
+        border: 1px solid  $borderlight;
+
+        .login-header {
+            padding: 1rem 0 1rem 0;
+            border-bottom: 1px solid $borderlight;;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-message,.password-message {
+            font-size: 0.75rem;
+            font-style: italic;
+            height: 1rem;
+        }
+
+    }
+}
+
+
+/*страница ошибка 404*/
+.p03 {
+    .header {
+        padding: 15px 0 15px 0;
+        border-bottom: 1px solid $borderlight;
+        margin-bottom: 0;
+    }
+
+}
+
+
+
+

@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', ready);
 
 function ready()
 {
-    //pageReady();
-
-
+    //если в связанном с данной страницей файле js есть pageRaeady
+    // вызовем ее
+    if (typeof pageReady === "function") {
+        pageReady();
+    }
 }
 
 function unixtime2str(xTime)
