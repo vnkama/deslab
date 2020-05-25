@@ -12,7 +12,7 @@ use \Error;
  *
  * @package core
  */
-class Router
+final class Router
 {
 
     private $arrMysqlConfig;
@@ -36,8 +36,6 @@ class Router
 
         $this->arrMysqlConfig   = require('../config/MysqlConfig.php');
         $this->arrRoutes        = require('../config/routes.php');
-
-
 
     }
 

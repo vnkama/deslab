@@ -5,7 +5,7 @@
     /**
      * создает/открывает лог.
      */
-    function log_initLog()
+    function loginit()
     {
         file_put_contents(DEBUG_LOG_FILENAME, "\r\n\r\n*****************************\r\nrouter: " . date("Y-m-d H:i:s") . " " . ($_SERVER['REQUEST_METHOD']??'') . "\r\n", FILE_APPEND);
     }

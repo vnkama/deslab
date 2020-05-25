@@ -1,9 +1,10 @@
 <?php
-
-
 namespace Core;
 
 
+//
+//
+//
 interface iModel
 {
     public function __construct($params=null);

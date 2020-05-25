@@ -1,0 +1,101 @@
+<!--содержимое BODY-->
+
+<div class='bodyfullWidth'>
+    <div class='bodyJobWidth'>
+        <h1>Сотрудники оргианизации</h1>
+
+
+        <div class='workersTableFilter'>
+            <div class='workersTableFilter__row'>
+                <div class='workersTableFilter__label'>Зарплата за месяц:</div>
+                <input type="date" id = 'workersTableFilter__calendar' value="2019-10-01" min='2019-01-01' min='2019-10-31'>
+                <input type='button' id='workersTableFilter__curMonthButton' value='Текущий месяц'>
+
+
+                <?= BOTH ?>
+            </div>
+
+            <div class='workersTableFilter__row '>
+                <div class='workersTableFilter__label'>Зарплата за месяц:</div>
+                <input type="date" id = 'workersTableFilter__calendar' value="2019-10-01" min='2019-01-01' min='2019-10-31'>
+                <input type='button' id='workersTableFilter__curMonthButton' value='Текущий месяц'>
+
+
+                <?= BOTH ?>
+            </div>
+
+        </div>
+
+
+        <div class='workersTable'>
+            <div class='workersTable__row'>
+                <div class='workersTable__foto'>
+                </div>
+                <div class='workersTable__idWorker_header'>
+                    ID
+                </div>
+                <div class='workersTable__name_header'>
+                    Имя
+                </div>
+                <div class='workersTable__family_header'>
+                    Фамилия
+                </div>
+                <div class='workersTable__profession_header'>
+                    Должность
+                </div>
+                <div class='workersTable__fixSalary_header'>
+                    Оклад
+                </div>
+                <div class='workersTable__bonusSalary_header'>
+                    Премия
+                </div>
+                <div class='workersTable__totalSalary_header'>
+                    з/п итого
+                </div>
+
+                <?= BOTH ?>
+
+            </div>
+
+
+            <?php foreach ($this->model as $arrWorker) { ?>
+                <div class='workersTable__row' id='worker<?= $arrWorker['id'] ?>'>
+                    <div class='workersTable__foto'>
+                        <!--<img class ='mini' src='./img/<?= $arrWorker["fotoFile"] ?>s.jpg' >-->
+                        <a data-fancybox="gallery" href='./img/<?= $arrWorker["fotoFile"] ?>.jpg'><img src='./img/<?= $arrWorker["fotoFile"] ?>s.jpg'></a>
+                    </div>
+                    <div class='workersTable__idWorker'>
+                        <?= $arrWorker['id'] ?>
+                    </div>
+                    <div class='workersTable__name'>
+                        <?= $arrWorker['name'] ?>
+                    </div>
+                    <div class='workersTable__family'>
+                        <?= $arrWorker['family'] ?>
+                    </div>
+                    <div class='workersTable__profession'>
+                        <?= $arrWorker['profession'] ?>
+                    </div>
+                    <div class='workersTable__fixSalary'>
+                        <?= $arrWorker['fixSalary'] ?>
+                    </div>
+                    <div class='workersTable__bonusSalary'>
+                        <?= $arrWorker['bonusSalary'] ?>
+                    </div>
+                    <div class='workersTable__totalSalary'>
+                        <?= $arrWorker['totalSalary'] ?>
+                    </div>
+
+                    <?= BOTH ?>
+                </div> <!--<div class='workersTable__row'-->
+            <?php } ?>
+
+            <?= BOTH ?>
+
+
+        </div> <!--<div class='WorkersTable'>-->
+
+
+    </div>
+</div>
+

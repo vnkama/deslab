@@ -5,9 +5,45 @@ namespace core;
 
 use \Error;
 
-const MYSQL_MAX_STRLEN                    = 8000;   //макс длинна стрнга в cSql
+const MYSQL_MAX_STRLEN                    = 8192;   //макс длинна стрнга в cSql
 
 
+/////////////////////////////////////////
+/////////////////////////////////////////
+//
+//глобальный объект  $global_Mysql, база данных
+//делаем базу данных глобальной т.к. в данном приложеии база данных только одна
+//база открывается в начале работы приложения и остается открытой на потяжении всей работы приложения
+
+
+$global_sql = null;    //объект базы данных
+
+//
+//
+//
+function mysql_setSql($sql)
+{
+    global $global_sql;
+
+    if (!is_null($global_sql)) {
+        die("mysql_setSql error");
+    }
+
+    $global_sql = $sql;
+}
+
+
+
+//
+// применяется "безопасного" обращения к классу базы данных
+// например sql()->select(.....)
+// т.к. sql() вывзывается очень часто то называем , для "красоты" называем sql() а не g_sql()
+//
+function sql()
+{
+    global $global_sql;
+    return  $global_sql;
+}
 
 
 /**
@@ -16,28 +52,15 @@ const MYSQL_MAX_STRLEN                    = 8000;   //макс длинна ст
  * класс - проклдка для доступа к mysql
  *
  */
-class Mysql
+final class Mysql
 { 
 	private $dblink;
-
-    /**
-     * простейшая проверка строки запроса перед вызовом функций mysqli
-     * @param $str
-     */
-    function testString($str)
-    {
-        if (!is_string($str)) throw new Error();
-
-        $len=strlen($str);
-        if ($len < 2 || $len > MYSQL_MAX_STRLEN) throw new Error();
-        return 1;
-    }
 
     public function __construct($config)
     {
 
         $this->dblink = mysqli_connect(
-            'localhost',
+            $config['hostname'],
             $config['username'],
             $config['password'],
             $config['database']
@@ -50,6 +73,19 @@ class Mysql
 
         // указывать кодировку нужно втч для mysqli_real_escape_string
         if (!mysqli_set_charset($this->dblink, 'utf8mb4')) throw new Error();
+    }
+
+    /**
+     * простейшая проверка строки запроса перед вызовом функций mysqli
+     * @param $str
+     */
+    function testString($str)
+    {
+        if (!is_string($str)) throw new Error();
+
+        $len=strlen($str);
+        if ($len < 2 || $len > MYSQL_MAX_STRLEN) throw new Error();
+        return 1;
     }
 
 

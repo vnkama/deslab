@@ -8,21 +8,35 @@ use \Error;
 
 class Controller
 {
-    protected $model;
-    protected $view;
 
-    protected $arrPostRequest;  //запрос
-    protected $arrPostAnswer;   //ответ на post запрос браузера
+protected $model;
+protected $view;
+
+protected $arrPostRequest;  //запрос
+protected $arrPostAnswer;   //ответ на post запрос браузера
 
 
-    protected $data2View;   //массив данных для передачи во view
+protected $data2View;   //массив данных для передачи во view
 
-    protected $isAdmin;
+protected $isAdmin;
+private $accessLevel;
 
-    function __construct()
-    {
-        $this->isAdmin = Authorization::getInst()->isAdmin();
-    }
+
+function __construct()
+{
+    $this->accessLevel = Authorization::getInst()->isAdmin();
+}
+
+public function isAdmin()
+{
+    return ($this->accessLevel === 100);
+}
+
+public function getAccessLevel()
+{
+    return ($this->accessLevel);
+}
+
 
 
     /**

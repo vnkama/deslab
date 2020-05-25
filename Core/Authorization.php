@@ -1,19 +1,22 @@
 <?php
 
-
 namespace core;
 
 
+//
+//
+//
 final class Authorization
 {
     private static $_instance;
 
-    private function __construct() {
-    }
+    //констурктор приватный, чтобы исключить оздание класса через new
+    private function __construct() {}
 
     public static function getInst() {
         if (self::$_instance === null) {
             self::$_instance = new self;
+            self::$accessLevel = 0;
         }
 
         return self::$_instance;
@@ -24,6 +27,8 @@ final class Authorization
     private function __wakeup() {}
 
     ///////////////////////////////////////////////
+
+    static private $accessLevel;
 
     public function isAdmin()
     {
@@ -45,7 +50,13 @@ final class Authorization
         return $loginRes;
     }
 
-    public function logoff() {
+    public function logout() {
         $_SESSION['username'] = 'guest';
     }
+
+    public function getAccessLevel()
+    {
+        return $this->accessLevel;
+    }
+
 }
